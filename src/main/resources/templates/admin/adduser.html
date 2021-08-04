@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加用户</title>
+    <link type="text/css" th:href="@{/static/layui/css/layui.css}"
+          rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
+
+    <link type="text/css" th:href="@{/static/css/adduser.css}"
+          rel="stylesheet" href="../../static/css/adduser.css" media="all">
+
+    <script th:src="@{/static/js/jquery.min.js}"
+            src="../../static/js/jquery.min.js"></script>
+    <script type="text/javascript"
+            th:src="@{/static/js/vue.js}"
+            src="../../static/js/vue.js"></script>
+
+</head>
+<body>
+
+<div class="layui-container">
+    <form class="layui-form" lay-filter="userInfo">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">用户ID:</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="userId" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-inline">
+                <label class="layui-form-label">用户姓名:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="username" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-inline">
+                <label class="layui-form-label">用户密码:</label>
+                <div class="layui-input-inline">
+                    <input type="password" name="password" class="layui-input">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">选择性别</label>
+            <div class="layui-input-inline">
+                <select name="gender">
+                    <option value=""></option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">选择身份</label>
+            <div class="layui-input-inline">
+                <select name="role">
+                    <option value=""></option>
+                    <option value="普通用户">普通用户</option>
+                    <option value="超级管理员">超级管理员</option>
+                </select>
+            </div>
+        </div>
+
+        <!--        </div>-->
+        <input type="button" lay-submit value="添加" class="layui-btn layui-btn-radius" lay-filter="add" id="subtn"/>
+    </form>
+
+</div>
+
+
+<script type="text/javascript"
+        th:src="@{/static/layui/layui.all.js}"
+        src="../../static/layui/layui.all.js"></script>
+<script type="text/javascript">
+    layui.use(['form','layer'], function () {
+        const form = layui.form;
+        //表单取值
+       form.on('submit(add)', function () {
+            let layer = layui.layer;
+            const info = form.val('userInfo');
+            // console.log(info);
+            $.ajax({
+                url: "/admin/add",
+                method: "post",
+                data: info,
+                // dataType:"text",
+                async:true,
+                success: function (message) {
+                    // alert(message);
+                    layer.msg(message);
+                }
+            });
+        });
+        return false;
+    });
+</script>
+
+</body>
+</html>

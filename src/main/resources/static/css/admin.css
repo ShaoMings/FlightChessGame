@@ -1,0 +1,34 @@
+body{
+    overflow-x: hidden;
+}
+
+.pie-img {
+    float: left;
+    position: absolute;
+    margin-left: 45%;
+    width: 100px;
+    height: 100px;
+}
+
+.windows{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+}
+
+#content{
+    margin-left: 16%;
+    width: 84%;
+    height: 100%;
+}
+
+.layui-side-scroll a{
+    cursor: pointer;
+}
+
+#my-nav-group li{
+    display: block;
+    width: 100%;
+    line-height: 45px;
+    height: auto;
+}

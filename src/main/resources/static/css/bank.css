@@ -1,0 +1,18 @@
+
+
+.layui-container{
+    margin: 1% auto;
+}
+
+.preview{
+    float: right;
+}
+
+#search,#search-div{
+    width: 100%;
+}
+
+.tablist a{
+    text-decoration: none;
+    color: #08c;
+}

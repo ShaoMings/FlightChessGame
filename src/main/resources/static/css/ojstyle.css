@@ -1,0 +1,160 @@
+body{
+    overflow-y: hidden;
+}
+
+
+.layui-textarea{
+    width: 100%;
+    height: 78vh;
+}
+
+
+.index-left{
+    display: inline-block;
+}
+
+.index-left h1{
+    font-size: 20px;
+}
+
+
+.pie-img{
+    float: left;
+    width: 100px;
+    height: 100px;
+}
+
+.navBar{
+    position: relative;
+    text-align: center;
+    z-index: 2;
+}
+
+
+footer{
+    font-size: 14px;
+    line-height: 1.42857143;
+    font-family: 'Varela Round', sans-serif;
+    box-sizing: border-box;
+    display: block;
+    color: #8c9398;
+    text-align: center;
+    padding: 60px 0px !important;
+    clear: both;
+}
+ul.legals {
+    list-style: none;
+    color: #8c9398;
+    font-size: 14px;
+    margin: 5px auto;
+    padding: 0px !important;
+}
+
+.line{
+    border-bottom: 1px solid #ababab;
+    width: 170px;
+    margin: 0 auto;
+}
+
+ul.legals li {
+    display: inline-block;
+    padding: 0px 20px;
+    margin: 0px;
+}
+
+
+
+.code-text{
+    position: absolute;
+    float: left;
+    margin-left: 50%;
+    width: 50%;
+    height: auto;
+}
+
+.ace_editor{
+    width: 100%;
+    height: 77vh;
+    font-size: 18px;
+    /*border-radius: 1.1rem;*/
+    outline: none;
+    overflow: auto;
+    word-break: break-all; /*解决兼容问题*/
+
+}
+
+.search{
+    margin-left: 5%;
+    width: 440%;
+    border-radius: 15px;
+}
+
+#my_btn{
+    margin-top: 1%;
+    margin-left: 345%;
+}
+
+.login-before{
+    margin-left: 62%;
+}
+
+.login-after{
+   float: right;
+}
+
+
+.layui-tab{
+    float: left;
+    width: 45%;
+    height: auto;
+}
+
+
+
+.submit-btn{
+    margin-top: 1%;
+}
+
+.oj-btn{
+    width: auto;
+    float: right;
+    padding-top: 0.6%;
+}
+
+@keyframes errormove
+ {
+    0% {background: #feebef;}
+
+　　50% {background: #ffd7de  ;}
+
+　　100% {background: #fca8b7  ;}
+ }
+
+@-webkit-keyframes errormove /*Safari and Chrome*/
+{
+    0% {background: #feebef;}
+
+　　50% {background: #ffd7de;}
+
+　　100% {background: #fca8b7;}
+}
+
+@keyframes successmove
+{
+    0% {background: #e5fee5;}
+
+　　50% {background: #c5ffc5
+;}
+
+　　100% {background: #98ff98
+;}
+}
+
+@-webkit-keyframes successmove /*Safari and Chrome*/
+{
+    0% {background: #e5fee5;}
+
+　　50% {background: #c5ffc5  ;}
+
+　　100% {background: #98ff98  ;}
+}

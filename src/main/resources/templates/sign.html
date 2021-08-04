@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" th:href="@{/static/css/sign-style.css}"/>
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}">
+    <script th:src="@{/static/js/fontSign.js}"></script>
+    <script th:src="@{/static/js/jquery.min.js}"></script>
+    <title>登录注册</title>
+    <style>
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; }
+        input[type="number"]{ -moz-appearance: textfield; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="forms-container">
+        <div class="signin-signup">
+            <form class="sign-in-form layui-form" lay-filter="login-info">
+                <h2 class="title">登录</h2>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="number" maxlength="12" name="username" placeholder="用户名/ID"/>
+                </div>
+
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" placeholder="用户密码"/>
+                </div>
+                <input lay-submit type="button" value="登录" class="btn solid" lay-filter="login"/>
+                <p class="social-text">第三方账户登录</p>
+                <div class="social-media">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </form>
+            <form class="sign-up-form layui-form" lay-filter="register-info">
+                <h2 class="title">注册</h2>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="number" maxlength="12" name="username" placeholder="用户名/ID"/>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-id-card"></i>
+                    <input type="text" maxlength="12" name="name" placeholder="昵称"/>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" placeholder="用户密码"/>
+                </div>
+                <input type="button" lay-submit class="btn" value="注册" lay-filter="register"/>
+                <p class="social-text">使用第三方账户注册</p>
+                <div class="social-media">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panels-container">
+        <div class="panel left-panel">
+            <div class="content">
+                <h3>还没有账户 ?</h3>
+                <p>
+                    你可以从下面的按钮进行账户注册！
+                </p>
+                <button class="btn transparent" id="sign-up-btn">
+                    注册
+                </button>
+                <button class="btn transparent" onclick="window.location.href='/';window.close();">
+                    首页
+                </button>
+            </div>
+            <img th:src="@{/static/images/sign/log.svg}" class="image" alt=""/>
+        </div>
+        <div class="panel right-panel">
+            <div class="content">
+                <h3>已有账户 ?</h3>
+                <p>
+                    你可以从下面的按钮进行账户登录！
+                </p>
+                <button class="btn transparent" id="sign-in-btn">
+                    登录
+                </button>
+                <button class="btn transparent" onclick="window.location.href='/';window.close();">
+                    首页
+                </button>
+            </div>
+            <img th:src="@{/static/images/sign/register.svg}" class="image" alt=""/>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/static/js/sign.js}"></script>
+<script th:src="@{/static/layui/layui.all.js}"></script>
+<script type="text/javascript">
+    layui.use(['form','layer'],function () {
+        const form = layui.form;
+        form.on('submit(login)',function () {
+            let layer = layui.layer;
+            const info = form.val('login-info');
+            $.ajax({
+                url:"/sign/login",
+                method:"post",
+                data:info,
+                sync:true,
+                success:function (msg) {
+                    // console.log(msg);
+                    layer.msg(msg);
+                    if (msg === "登录成功!"){
+                        setTimeout('window.location.href="/";window.close()',1000);
+                    }
+                }
+            });
+        });
+
+        form.on('submit(register)',function () {
+            let layer = layui.layer;
+            const info = form.val('register-info');
+            $.ajax({
+                url:'/sign/register',
+                method: 'post',
+                data: info,
+                async:true,
+                success:function (msg) {
+                    layer.msg(msg);
+                    if (msg === "注册成功!"){
+                        setTimeout('window.location.href="/login";window.close()',1000);
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

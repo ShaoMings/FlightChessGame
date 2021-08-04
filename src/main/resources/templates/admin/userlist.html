@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>题库信息</title>
+    <link type="text/css" th:href="@{/static/layui/css/layui.css}"
+          rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
+    <script th:src="@{/static/js/jquery.min.js}"
+            src="../../static/js/jquery.min.js"></script>
+</head>
+<body>
+<table class="layui-hide" id="test" lay-filter="test"></table>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
+</script>
+
+
+
+<script type="text/javascript"
+        th:src="@{/static/layui/layui.js}"
+        src="../../static/layui/layui.js"></script>
+<script th:inline="none" type="text/javascript">
+    layui.use(['table','element'], function(){
+        var table = layui.table;
+        var element = layui.element;
+        element.render();
+        table.render({
+            elem: '#test'
+            ,url:'/admin/queryAll'
+            ,title: '用户数据表'
+            ,page: true
+            ,limit:20
+            ,parseData: function(res){ //res 即为原始返回的数据
+                // console.log(res);
+                let result;
+                // console.log(this);
+                // console.log(JSON.stringify(res));
+                if(this.page.curr){
+                    result = res.slice(this.limit*(this.page.curr-1),this.limit*this.page.curr);
+                }else{
+                    result=res.slice(0,this.limit);
+                }
+                return {
+                    "code": 0, //解析接口状态
+                    "msg": "", //解析提示文本
+                    "count": res.length, //解析数据长度
+                    "data": result //解析数据列表
+                };
+            }
+            ,cols: [[
+                {field:'id', title:'序号', fixed: 'left', sort: true},
+                {field:'userId', title:'用户ID'}
+                ,{field:'username', title:'用户姓名',  edit: 'text'}
+                ,{field:'password', title:'用户密码', edit: 'text'}
+                ,{field:'gender', title:'用户性别', edit: 'text'}
+                ,{field:'role', title:'用户身份'}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:100}
+            ]]
+        });
+
+        //头工具栏事件
+        table.on('edit(test)', function(obj){
+
+            const value = obj.value //得到修改后的值
+                , data = obj.data //得到所在行所有键值
+                , field = obj.field; //得到字段
+            $.ajax({
+                url:"/admin/update",
+                method:"post",
+                data:data,
+                success:function (message){
+                    layer.msg(message);
+                }
+            });
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function(obj){
+            const data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                    let delObj = {"id":data.id};
+                    console.log(delObj);
+                    $.ajax({
+                        url:"/admin/del",
+                        method: "get",
+                        data:delObj
+                    });
+                });
+            } else if(obj.event === 'edit'){
+                layer.prompt({
+                    formType: 2
+                    ,value: data.email
+                }, function(value, index){
+                    obj.update({
+                        email: value
+                    });
+                    layer.close(index);
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

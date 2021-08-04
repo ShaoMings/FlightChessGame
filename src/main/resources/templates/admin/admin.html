@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name=”viewport” content=”width=device-width, charset="UTF-8"/>
+    <title>后台管理</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/ojstyle.css}"
+          href="../../static/css/ojstyle.css">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/admin.css}"
+          href="../../static/css/admin.css">
+
+    <link type="text/css" th:href="@{/static/layui/css/layui.css}"
+          rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
+
+    <script th:src="@{/static/js/jquery.min.js}"
+            src="../../static/js/jquery.min.js"></script>
+
+    <script type="text/javascript"
+            th:src="@{/static/js/vue.js}"
+            src="../../static/js/vue.js"></script>
+
+</head>
+<body>
+
+<div class="layui-layout layui-layout-admin ">
+    <div class="layui-header header header-my-nav">
+        <div class="navBar">
+            <ul class="layui-nav">
+                <img class="pie-img" th:src="@{/static/images/pie-chart-1.svg}"/>
+                <div class="menu">
+                    <li class="index-left">
+                        <h1 class="logo">
+                            <img th:src="@{/static/images/program.svg}" class="layui-nav-img">OnlineGame
+                        </h1>
+                    </li>
+                    <li class="layui-nav-item" id="index">
+                        <a href="/"><i class="layui-icon layui-icon-home"></i>首页<span class="layui-badge-dot"></span></a>
+                    </li>
+                    <li class="layui-nav-item" id="project">
+                        <a href="/admin/index"><i class="layui-icon layui-icon-group"></i>用户管理<span
+                                class="layui-badge-dot"></span></a>
+                    </li>
+
+                    <li class="layui-nav-item" id="judge">
+                        <a href="/"><i class="layui-icon layui-icon-app"></i>在线游戏<span class="layui-badge-dot"></span></a>
+                    </li>
+
+                    <li class="layui-nav-item" id="exercise">
+                        <a href="/"><i class="layui-icon layui-icon-dialogue"></i>学习交流<span class="layui-badge-dot"></span></a>
+                    </li>
+
+<!--                    <li class="layui-nav-item" id="about">-->
+<!--                        <a href=""><i class="layui-icon layui-icon-about"></i>关于我们</a>-->
+<!--                    </li>-->
+
+                    <li class="layui-nav-item layui-inline index-right" th:if="${session.auth} eq true">
+                        <a href="javascript:;"><img th:src="@{/static/images/mine.png}" class="layui-nav-img">
+                            <th:block th:text="${session.user}"/>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd th:if="${session.isAdmin} eq true" ><a href="/admin/index">后台管理</a></dd>
+                            <dd><a href="/sign/logout">退出登录</a></dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item" th:if="${session.auth} eq false">
+                        <a href="/login"><i class="layui-icon layui-icon-username"></i>登录</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div id="app">
+            <div class="layui-side layui-bg-black">
+                <div class="layui-side-scroll">
+                    <ul class="layui-nav layui-nav-tree layui-bg-cyan layui-inline" id="my-nav-group">
+                        <li class="layui-nav-item layui-nav-itemed">
+                            <a class="javascript:;" href="javascript:;">用户管理<span class="layui-nav-more"></span></a>
+                            <dl class="layui-nav-child">
+                                <dd class="">
+                                    <a @click="winsrc='/admin/userlist'">用户列表</a>
+                                </dd>
+                                <dd class="">
+                                    <a @click="winsrc='/admin/adduser'">添加用户</a>
+                                </dd>
+                            </dl>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <input hidden th:value="${auth}">
+            <div class="windows">
+                <iframe id="content" :src="winsrc"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript"
+        th:src="@{/static/layui/layui.all.js}"
+        src="../../static/layui/layui.all.js"></script>
+
+<script type="text/javascript">
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            winsrc: '/admin/userlist'
+        }
+    })
+
+
+    $(function () {
+        var content = '<li class="layui-nav-item layui-this" id="about">\n' +
+            '                <a href=""><i class="layui-icon layui-icon-about"></i>后台管理</a>\n' +
+            '            </li>';
+        $('#about').after(content);
+
+        layui.use(['element'], function () {
+            var element = layui.element;
+            element.render();
+        })
+    })
+
+</script>
+</body>
+</html>

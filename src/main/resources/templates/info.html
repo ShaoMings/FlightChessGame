@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>个人主页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="个人主页">
+    <meta name="keywords" content="个人主页">
+    <meta name="author" content="lmpixels">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap-grid.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/static/css/perfect-scrollbar.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/static/css/info-main.css}" type="text/css">
+
+
+</head>
+<body>
+<div class="lm-animated-bg transition"
+     style="background-image: url('/static/images/main_bg.png'); background-position: calc(50% + -5.53065px) calc(50% + -0.854534px);"></div>
+
+<div class="preloader" style="display: none;">
+    <div class="preloader-animation">
+        <div class="preloader-spinner"></div>
+    </div>
+</div>
+<div id="x1" class="page">
+    <div class="page-content">
+        <header id="site_header" class="header mobile-menu-hide">
+            <div class="header-content">
+                <div class="header-photo" th:switch="${session.userGender} eq '女'">
+                    <img th:case="false" th:src="@{/static/images/main_photo.jpg}" class="user-name-alt user-sex">
+                    <img th:case="true" th:src="@{/static/images/main_photo2.jpg}" class="user-name-alt user-sex">
+                </div>
+                <div class="header-titles"><h2 class="user-name" th:text="${session.username}"></h2><h4>个人主页</h4></div>
+            </div>
+            <div class="social-links">
+                <ul>
+                    <li><a href="javascript:void(0);" class="user-weibo-href"><i
+                            class="fab fa-weibo"></i></a></li>
+                    <li><a href="javascript:void(0);" class="user-weixin-href"><i
+                            class="fab fa-weixin "></i></a></li>
+                    <li><a href="javascript:void(0);" class="user-qq-href"><i
+                            class="fab fa-qq "></i></a></li>
+                </ul>
+            </div>
+            <div class="header-buttons"><a href="/"
+                                           class="btn btn-primary user-phone-href">返回首页</a></div>
+            <div class="copyrights">© 2021 个人信息</div>
+        </header>
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+        <div class="content-area">
+            <div class="animated-sections">
+                <section data-id="home" class="animated-section start-page ps ps--theme_default section-active"
+                         data-ps-id="dd6353d8-fdde-d8e3-afaa-f57a4f48fdd2">
+                    <div class="section-content vcentered">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-7">
+                                <div class="block-title"><h3 th:text="用户账号+':   '+${session.user}"></h3></div>
+                                <div class="white-space-50"></div>
+                                <div class="block-title"><h3 th:text="用户身份+':   '+${session.userRole}"></h3></div>
+                            </div>
+                            <div class="col-xs-12 col-sm-5">
+                                <div class="block-title"><h3 th:text="用户名+':   '+${session.username}"></h3></div>
+                                <div class="white-space-50"></div>
+                                <div class="block-title"><h3 th:text="性别+':   '+${session.userGender}"></h3></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ps__scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+                        <div class="ps__scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps__scrollbar-y-rail" style="top: 0px; right: 0px;">
+                        <div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                    </div>
+                </section>
+
+
+                <section data-id="resume" class="animated-section ps ps--theme_default ps--active-y"
+                         data-ps-id="3190b538-eb6c-8991-95a0-bd6470f63d9a">
+                    <div class="page-title"><h2>经历</h2></div>
+                    <div class="section-content">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-7">
+                                <div class="block-title"><h3>教育经历</h3></div>
+                                <div class="timeline timeline-second-style clearfix data-edu">
+
+                                </div>
+                                <div class="white-space-50"></div>
+                                <div class="block-title"><h3>工作经历</h3></div>
+                                <div class="timeline timeline-second-style clearfix data-work">
+
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-5">
+
+                                <div class="white-space-10"></div>
+                                <div class="block-title"><h3>我的关键字</h3></div>
+                                <ul class="knowledges data-skill">
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="white-space-50"></div>
+
+                    </div>
+                    <div class="ps__scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+                        <div class="ps__scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps__scrollbar-y-rail" style="top: 0px; height: 507px; right: 0px;">
+                        <div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 211px;"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/static/js/jquery.min.js}"></script>
+
+<div id="page-ajax-loaded" class="page-ajax-loaded animated animated-section-moveFromLeft"></div>
+</body>
+</html>

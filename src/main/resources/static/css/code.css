@@ -1,0 +1,99 @@
+/* CSS Document */
+
+
+.ace_editor{
+    width: 83.7%;
+    height: 65vh;
+    margin-left: 16.1%;
+    /*border-radius: 18px;*/
+}
+
+.output{
+    position: fixed;
+    height: 27.5vh;
+    margin-top: 0px;
+    margin-left: 16.1%;
+    width: 83.7%;
+}
+
+.result{
+    background-color: #ffffff;
+    resize: none;
+    border: none;
+    height: 19.5vh;
+    width: 100%;
+    font-size: 14px;
+    font-family: Monaco;
+    font-weight: bold;
+    color: darkorange;
+}
+
+.file-list{
+    margin-left: 16.1%;
+}
+
+#project{
+    margin: auto 5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-items: center;
+}
+
+#project button{
+    margin: 2% 2%;
+}
+
+#mybtn{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-items: center;
+}
+
+#mybtn button{
+    margin: 2% 2%;
+}
+
+.nav-right{
+    float: right;
+}
+.layui-nav .layui-this:after{
+    background-color: unset;
+}
+
+.control-icon{
+    width: 22px;
+    height: 22px;
+    transition: width 0.3s;
+    transition: height 0.3s;
+    -moz-transition: width 0.3s;
+    -moz-transition: height 0.3s;
+
+    -webkit-transition: width 0.3s;
+    -webkit-transition: height 0.3s;
+
+    -o-transition: width 0.3s;
+    -o-transition: height 0.3s;
+}
+
+.control-icon:active{
+    width: 35px;
+    height: 35px;
+}
+
+.ace_gutter-cell.ace_breakpoint{
+    background-image: url("../images/debug/breakpoint.svg");
+}
+
+/*.breakpoint_active_line{*/
+/*    background: #f89696;*/
+/*}*/
+
+.layui-this-after{
+    position: absolute;
+    background-color: #f7f7f7;
+}
+

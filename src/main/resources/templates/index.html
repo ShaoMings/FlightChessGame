@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow: hidden;" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="forntEnd-Developer" content="Mamunur Rashid">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 首页</title>
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/static/css/plugin.css}">
+    <link rel="stylesheet" th:href="@{/static/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/static/css/style.css}">
+    <link rel="stylesheet" th:href="@{/static/css/responsive.css}">
+</head>
+
+<body style="overflow: hidden;">
+
+<div class="preloader" id="preloader">
+    <div class="loader loader-1">
+        <div class="loader-outter"></div>
+        <div class="loader-inner"></div>
+    </div>
+</div>
+
+
+<header class="header">
+
+    <div class="mainmenu-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="/" style="color: #a1aed4;">
+                            <img th:src="@{/static/images/program.svg}" alt="" style="width: 18%;">OnlineGame
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_menu"
+                                aria-controls="main_menu" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse fixed-height" id="main_menu">
+                            <ul class="navbar-nav ml-auto" th:switch="${session.user != null}">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/">首页
+                                        <div class="mr-hover-effect"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:if="${session.user!=null}" href="javascript:game()">在线游戏
+                                        <div class="mr-hover-effect"></div>
+                                    </a>
+                                    <a class="nav-link" th:if="${session.user == null}" href="javascript:msg('请先登录!')">在线游戏
+                                        <div class="mr-hover-effect"></div>
+                                    </a>
+
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:if="${session.user!=null}" href="javascript:game()">学习交流
+                                        <div class="mr-hover-effect"></div>
+                                    </a>
+                                    <a class="nav-link" th:if="${session.user == null}" href="javascript:msg('请先登录!')">学习交流
+                                        <div class="mr-hover-effect"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item" th:case="false">
+                                    <a class="nav-link" href="javascript:msg('请先登录!');">用户中心
+                                        <div class="mr-hover-effect"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown" th:case="true">
+                                    <a class="nav-link dropdown-toggle" th:text="${session.username}" href="#" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li th:if="${session.isAdmin}"><a class="dropdown-item" href="/admin/index"> <i
+                                                class="fa fa-angle-double-right"></i>后台管理</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="/user/info"> <i
+                                                class="fa fa-angle-double-right"></i>个人信息</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="/sign/logout"> <i
+                                                class="fa fa-angle-double-right"></i>退出登录</a></li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                            <a th:if="${session.user == null}" href="/login" class="mybtn1"> 登录</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input id="userid" th:value="${session.user}" hidden="hidden">
+</header>
+
+
+<div class="hero-area">
+    <div class="container" style="margin-top: 19%;">
+        <div class="row">
+            <div class="col-lg-5 d-flex align-self-center">
+                <div class="left-content">
+                    <div class="content">
+                        <h5 class="subtitle">
+                            双人小游戏
+                        </h5>
+                        <p class="text">
+                            忙碌的学习工作之余，为什么不来一局
+                            紧张又刺激的双人小游戏呢!
+                        </p>
+                        <div class="links">
+                            <a id="begin" class="mybtn1 link1">开始游戏吧!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="hero-img2 d-block d-md-none">
+                    <img th:src="@{/static/images/heroarea.png}" alt="">
+                </div>
+                <div class="hero-img d-none d-md-block">
+                    <img class="img-fluid full-image" th:src="@{/static/images/heroarea.png}" alt="">
+                    <img class="shape phone" th:src="@{/static/images/h-shapes/phone.png}" alt="">
+                    <img class="shape man" th:src="@{/static/images/h-shapes/man222.png}" alt="">
+                    <img class="shape ripple" th:src="@{/static/images/h-shapes/ripple.png}" alt="">
+                    <img class="shape ripple2" th:src="@{/static/images/h-shapes/ripple1.png}" alt="">
+                    <img class="shape bitcoin1" th:src="@{/static/images/h-shapes/bitcoin1.png}" alt="">
+                    <img class="shape bitcoin2" th:src="@{/static/images/h-shapes/bitcoin2.png}" alt="">
+                    <img class="shape shape-icon" th:src="@{/static/images/h-shapes/shape.png}" alt="">
+                    <img class="shape award-bg" th:src="@{/static/images/h-shapes/award/bg.png}" alt="">
+                    <img class="shape award" th:src="@{/static/images/h-shapes/award/award.png}" alt="">
+                    <img class="shape gift-bg" th:src="@{/static/images/h-shapes/giftbox/bg.png}" alt="">
+                    <img class="shape gift" th:src="@{/static/images/h-shapes/giftbox/gift.png}" alt="">
+                    <img class="shape shield-bg" th:src="@{/static/images/h-shapes/shield/bg.png}" alt="">
+                    <img class="shape shield" th:src="@{/static/images/h-shapes/shield/shield.png}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/static/js/jquery.min.js}"></script>
+<script th:src="@{/static/js/popper.min.js}"></script>
+<script th:src="@{/static/js/bootstrap.min.js}"></script>
+<script th:src="@{/static/js/plugin.js}"></script>
+<script th:src="@{/static/js/TweenMax.js}"></script>
+<script th:src="@{/static/js/mousemoveparallax.js}"></script>
+<script th:src="@{/static/js/index-main.js}"></script>
+<script type="text/javascript" th:src="@{/static/layui/layui.all.js}"></script>
+<script type="text/javascript">
+
+    function msg(info) {
+        layui.use('layer', function () {
+            layer.msg(info);
+        });
+    }
+
+    $('#begin').click(function () {
+        game();
+    });
+
+    function game() {
+        if ($('#userid').val()!==''){
+            layui.use('layer', function () {
+                let layer = layui.layer;
+                let loading=layer.load(2, { shade: [0.15, '#ccc'] });
+                $.get('/session/users',{},function (data) {
+                    let str;
+                    layer.close(loading);
+                    let midStr = '';
+                    $.each(data, function (i, item) {
+                        let arr = item.split(':');
+                        midStr += '      <tr>\n' +
+                            '        <td>' + arr[0] + '</td>\n' +
+                            '        <td>' + arr[1] + '</td>\n' +
+                            '        <td>' + arr[2] + '</td>\n' +
+                            '        <td><a class="invitation" href="#" style="color: green" onclick="invitation(\''+arr+'\')">发起邀请</a></td>\n' +
+                            '      </tr>\n'
+                    });
+                    str = '<div class="layui-form">\n' +
+                        '  <table class="layui-table">\n' +
+                        '<colgroup>\n' +
+                        '      <col width="150">\n' +
+                        '      <col width="150">\n' +
+                        '      <col width="200">\n' +
+                        '      <col width="150">\n' +
+                        '      <col>\n' +
+                        '    </colgroup>' +
+                        '<thead>' +
+                        '<tr>' +
+                        '<th>ID</th>' +
+                        '<th>用户名</th>' +
+                        '<th>状态</th>' +
+                        '<th>操作</th>' +
+                        '</tr>' +
+                        '</thead>' +
+                        '    <tbody>\n' +
+                        midStr +
+                        '    </tbody>\n' +
+                        '  </table>\n' +
+                        '</div>';
+                    layer.open({
+                        type: 1,
+                        title: '选择在线游戏对象',
+                        // closeBtn:0,
+                        shadeClose: true,
+                        resize:false,
+                        skin: 'layui-layer-rim',
+                        content: str,
+                        area: ['650px', '700px'],
+                    });
+                    layui.use('element', function () {
+                        let element = layui.element;
+                        element.init();
+                    });
+                });
+            });
+        }else {
+            window.location.href='/login';
+        }
+
+    }
+
+
+    function invitation(arr) {
+        let s = arr.split(',');
+        let user = s[0];
+        let status = s[2];
+        if (status === "在线"){
+            $.get('/invitation/user',{'source':$('#userid').val(),'target':user});
+        }else if (status === "游戏中"){
+            layui.use('layer',function () {
+                let layer = layui.layer;
+                layer.msg("玩家正在对战中,请稍后再试!");
+            });
+        }else {
+            layui.use('layer',function () {
+                let layer = layui.layer;
+                layer.msg("玩家不在线,请稍后再试!");
+            });
+        }
+    }
+
+
+    let socket = null;
+    let objectUser = null;
+    if (typeof (WebSocket)  === undefined){
+        console.log("浏览器不支持websocket");
+    }else {
+        if ($('#userid').val()!==''){
+            let socketUrl = "ws://121.37.153.241//ws/"+$('#userid').val()+"/online";
+            // let socketUrl = "ws://www.cmonlineide.top/ws/"+$('#userid').val()+"/online";
+            // let socketUrl = "ws://www.shaoming.online/ws/" + $('#userid').val()+"/game";
+            // let socketUrl = "ws://localhost/ws/"+$('#userid').val()+"/online";
+            socket = new WebSocket(socketUrl);
+            // socket.onopen = function () {
+            //     console.log("websocket 打开！");
+            // };
+            // 接收信息
+            socket.onmessage = function (info) {
+                let msg = info.data;
+                if (msg.startsWith("invitation:")) {
+                    objectUser = msg.substring(msg.indexOf('到')+1,msg.indexOf('的'));
+                    //受邀请方
+                    layui.use('layer', function () {
+                        let layer = layui.layer;
+                        layer.confirm(msg.substring(msg.indexOf(':')+1), {
+                            btn: ['接受', '拒绝']
+                        }, function () {
+                            // layer.msg("跳转到对战页面!");
+                            //提醒对方加载
+                            $.get('/game/accept',{'source':$('#userid').val(),'target':msg.substring(msg.indexOf('到')+1,msg.indexOf('的'))});
+                            //设置玩家控制角色  受邀请方为角色1  邀请方为角色2
+                            $.ajax({
+                                url:'/distribution',
+                                method:'post',
+                                data:{'player1':$('#userid').val(),'player2':msg.substring(msg.indexOf('到')+1,msg.indexOf('的'))},
+                                success:function (data) {
+                                }
+                            });
+                           //自己加载
+                            $.ajax({
+                                url:'/load/game',
+                                method:'post',
+                                data:{'target':msg.substring(msg.indexOf('@')+1)},
+                                success:function (data) {
+                                    window.location.href='/game';
+                                }
+                            });
+                        }, function () {
+                            // layer.msg("向对方发送拒绝信息!");
+                            socket.send('{"targetUser":"' + objectUser + '","contentText":"refuse:不好意思哦！现在没空，下次再约吧！"}')
+
+                        });
+                    });
+                }else if (msg.startsWith("accept:")){
+                    // 邀请方
+                    if (msg.substring(msg.indexOf(':')+1,msg.indexOf('@')) === 'ok'){
+                        //设置玩家控制角色  受邀请方为角色1  邀请方为角色2
+                        $.ajax({
+                            url:'/distribution',
+                            method:'post',
+                            data:{'player1':msg.substring(msg.indexOf('@')+1),'player2':$('#userid').val()},
+                            success:function (data) {
+                            }
+                        });
+                        $.ajax({
+                            url:'/load/game',
+                            method:'post',
+                            data:{'target':msg.substring(msg.indexOf('@')+1)},
+                            success:function (data) {
+                                window.location.href='/game';
+                            }
+                        });
+                    }
+                    // console.log(msg);
+                }else if (msg.startsWith("refuse")){
+                    layui.use('layer',function () {
+                        let layer = layui.layer;
+                        layer.msg(msg.substring(msg.indexOf(':')+1));
+                    })
+                }
+            };
+
+            socket.onclose = function () {
+                console.log("websocket关闭！");
+            };
+
+            socket.onerror = function () {
+                console.log("websocket发生错误！");
+            };
+        }
+    }
+</script>
+</body>
+</html>

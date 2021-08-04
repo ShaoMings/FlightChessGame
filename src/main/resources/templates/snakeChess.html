@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>蛇行棋</title>
+    <link rel="stylesheet" th:href="@{/static/css/dice-style.css}"/>
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}"/>
+    <script type="text/javascript" th:src="@{/static/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
+
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            background-color: antiquewhite;
+        }
+
+        .container {
+            width: 50%;
+            margin: 3% auto;
+            display: flex;
+            justify-content: space-between;
+            align-content: space-between;
+        }
+
+        .chat_win{
+            margin-left: 5%;
+        }
+
+        #dinosaur1 {
+            position: absolute;
+            width: 55px;
+            height: auto;
+            /* 一格64px */
+            margin-left: 8px;
+            margin-top: 580px;
+            transform: matrix(1, 0, 0, 1, 0, 0);
+            animation-name: move;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+
+        #dinosaur2 {
+            position: absolute;
+            width: 55px;
+            height: auto;
+            /* 一格64px */
+            margin-left: 12px;
+            margin-top: 580px;
+            transform: matrix(1, 0, 0, 1, 0, 0);
+            animation-name: move;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+
+        #snake94_36 {
+            position: absolute;
+            width: 160px;
+            height: auto;
+            margin-left: 290px;
+            margin-top: 22px;
+        }
+
+        #snake92_90 {
+            position: absolute;
+            width: 100px;
+            height: auto;
+            margin-left: 520px;
+            margin-top: 26px;
+        }
+
+        #snake13_10 {
+            position: absolute;
+            width: 160px;
+            height: auto;
+            margin-left: 470px;
+            margin-top: 520px;
+        }
+
+        #snake32_27 {
+            position: absolute;
+            width: 180px;
+            height: auto;
+            margin-left: 395px;
+            margin-top: 390px;
+        }
+
+        #snake42_18 {
+            position: absolute;
+            width: 85px;
+            height: auto;
+            margin-left: 85px;
+            margin-top: 320px;
+        }
+
+        #snake68_48 {
+            position: absolute;
+            width: 55px;
+            height: auto;
+            margin-left: 450px;
+            margin-top: 192px;
+        }
+
+        #snake72_51 {
+            position: absolute;
+            width: 90px;
+            height: auto;
+            margin-left: 528px;
+            margin-top: 130px;
+        }
+
+        #snake35_5 {
+            position: absolute;
+            width: 102px;
+            height: auto;
+            margin-left: 290px;
+            margin-top: 390px;
+        }
+
+        #ladder24_64 {
+            position: absolute;
+            width: 102px;
+            height: auto;
+            margin-left: 148px;
+            margin-top: 212px;
+        }
+
+        #ladder8_14 {
+            position: absolute;
+            width: 115px;
+            height: auto;
+            margin-left: 400px;
+            margin-top: 525px;
+        }
+
+        #ladder83_98 {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            margin-left: 130px;
+            margin-top: 30px;
+        }
+
+        #ladder41_80 {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            margin-left: 8px;
+            margin-top: 159px;
+        }
+
+        #ladder74_94 {
+            position: absolute;
+            width: 100px;
+            height: auto;
+            margin-left: 400px;
+            margin-top: 40px;
+        }
+
+        #ladder66_85 {
+            position: absolute;
+            width: 120px;
+            height: auto;
+            margin-left: 265px;
+            margin-top: 90px;
+        }
+
+        #player1 {
+            position: absolute;
+            width: 55px;
+            margin-right: 70%;
+            margin-top: 18%;
+        }
+
+        #player2 {
+            position: absolute;
+            width: 55px;
+            margin-left: 70%;
+            margin-top: 18%;
+            transform: matrix(-1, 0, 0, 1, 0, 0);
+        }
+
+        #player1_chance {
+            position: absolute;
+            font-size: 25px;
+            text-align: right;
+            width: 30%;
+            height: 35%;
+            margin-right: 68%;
+            margin-top: 16%;
+            animation-name: p1-animation;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            /* background-color: cornflowerblue; */
+            border-radius: 25px;
+        }
+        #player2_chance {
+            position: absolute;
+            font-size: 25px;
+            width: 30%;
+            height: 35%;
+            margin-left: 68%;
+            margin-top: 16%;
+            animation-name: p2-animation;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            /* background-color: cornflowerblue; */
+            border-radius: 25px;
+
+        }
+
+        #chat_content{
+            width: 450px;
+            height: 642px;
+            border-radius: 9px;
+            font-size: 20px;
+            resize: none;
+            background: antiquewhite;
+            border: 2px solid #ff9933;
+        }
+
+        #chat_msg{
+            width: 450px;
+            height: 180px;
+            border-radius: 8px;
+            font-size: 20px;
+            resize: none;
+            background: antiquewhite;
+            border: 2px solid #ff9933;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="container_left">
+    <img th:src="@{/static/images/game/snake/67-5snake.png}" id="snake94_36"/>
+    <img th:src="@{/static/images/game/snake/57-45snake.png}" id="snake92_90"/>
+    <img th:src="@{/static/images/game/snake/19-4snake.png}" id="snake13_10"/>
+    <img th:src="@{/static/images/game/snake/32-27snake.png}" id="snake32_27"/>
+    <img th:src="@{/static/images/game/snake/42-18snake.png}" id="snake42_18"/>
+    <img th:src="@{/static/images/game/snake/42-22snake.png}" id="snake68_48"/>
+    <img th:src="@{/static/images/game/snake/76-55snake.png}" id="snake72_51"/>
+    <img th:src="@{/static/images/game/snake/91-69snake.png}" id="snake35_5"/>
+    <img th:src="@{/static/images/game/ladder/24-63ladder.png}" id="ladder24_64"/>
+    <img th:src="@{/static/images/game/ladder/52-68ladder.png}" id="ladder8_14"/>
+    <img th:src="@{/static/images/game/ladder/83-98ladder.png}" id="ladder83_98"/>
+    <img th:src="@{/static/images/game/ladder/41-80ladder.png}" id="ladder41_80"/>
+    <img th:src="@{/static/images/game/ladder/74-93ladder.png}" id="ladder74_94"/>
+    <img th:src="@{/static/images/game/ladder/66-85ladder.png}" id="ladder66_85"/>
+    <img th:src="@{/static/images/game/dinosaur1.png}" id="dinosaur1" name="play1"/>
+    <img th:src="@{/static/images/game/dinosaur2.png}" id="dinosaur2" name="play2"/>
+    <canvas id="canvas" style="margin-left: 4px;"></canvas>
+
+    <!-- <button id="clearTest" onclick="random()">Test</button> -->
+    <div class="dice" id="roll-button">
+        <div style="position: absolute;padding-bottom: 18%;padding-right: 76%;">
+            <h2 id="player1_name" style="font-family: cursive;">玩家1:小明同学</h2>
+        </div>
+        <div class="layui-progress layui-progress-big" lay-showpercent="true"
+             style="position: absolute;width: 32%;margin-right: 68%;background-color: #ffffff;">
+            <div id="p1_progress" class="layui-progress-bar" lay-percent="1%" style="width: 1%;"><span
+                    class="layui-progress-text">1%</span></div>
+        </div>
+        <div id="player1_chance">
+        </div>
+        <img th:src="@{/static/images/game/dinosaur1.png}" id="player1" />
+
+        <div style="position: absolute;padding-bottom: 18%;padding-left: 76%;">
+            <h2 id="player2_name" style="font-family: cursive;">玩家2:小红同学</h2>
+        </div>
+        <div class="layui-progress layui-progress-big" lay-showpercent="true"
+             style="position: absolute;width: 32%;margin-left: 68%;transform: matrix(-1,0,0,1,0,0);background-color: #ffffff;">
+            <div id="p2_progress" class="layui-progress-bar" lay-percent="1%"
+                 style="width: 1%;transform: matrix(-1,0,0,1,0,0);">
+                <span class="layui-progress-text">1%</span>
+            </div>
+        </div>
+        <div id="player2_chance">
+            10
+        </div>
+        <img th:src="@{/static/images/game/dinosaur2.png}" id="player2" />
+
+        <ol class="die-list even-roll" data-roll="1" id="die-1">
+            <li class="die-item" data-side="1">
+                <span class="dot"></span>
+            </li>
+            <li class="die-item" data-side="2">
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </li>
+            <li class="die-item" data-side="3">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </li>
+            <li class="die-item" data-side="4">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </li>
+            <li class="die-item" data-side="5">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </li>
+            <li class="die-item" data-side="6">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </li>
+        </ol>
+    </div>
+    </div>
+    <div class="container_right">
+        <div class="chat_win">
+            <textarea id="chat_content" readonly></textarea>
+            <textarea id="chat_msg"></textarea>
+        </div>
+    </div>
+</div>
+<input id="userid" th:value="${session.user}" hidden="hidden">
+<input id="username" th:value="${session.username}" hidden="hidden">
+<input id="target_username" th:value="${session.targetUsername}" hidden="hidden">
+<input id="target" th:value="${session.targetUser}" hidden="hidden">
+<input id="distribution" th:value="${session.distribution}" hidden="hidden">
+<input id="distributionUsername" th:value="${session.distributionUsername}" hidden="hidden">
+<script type="text/javascript" th:src="@{/static/js/snakechess.js}"></script>
+<script>
+    $.ajax({
+        url:'/game/name',
+        method:'get',
+        data:{'target':$('#target').val()},
+        success:function (name) {
+            $('#target_username').val(name);
+        }
+    });
+    if ($('#target').val().startsWith('invitation:')) {
+        let tmp = $('#target').val();
+        $('#target').val(tmp.substring(tmp.indexOf('到')+1,tmp.indexOf('的')));
+    }
+</script>
+</body>
+</html>

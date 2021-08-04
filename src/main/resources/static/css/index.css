@@ -1,0 +1,116 @@
+
+body{
+    font-family: "Hind",-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
+}
+
+.navBar{
+    position: relative;
+    text-align: center;
+    z-index: 2;
+}
+
+.index-left{
+    display: inline-block;
+}
+
+.index-left h1{
+    font-size: 20px;
+}
+
+footer{
+    background-color: rgba(225,244,254,1);
+    font-size: 14px;
+    line-height: 1.42857143;
+    font-family: 'Varela Round', sans-serif;
+    box-sizing: border-box;
+    display: block;
+    color: #8c9398;
+    text-align: center;
+    padding: 60px 0px !important;
+    clear: both;
+}
+ul.legals {
+    list-style: none;
+    color: #8c9398;
+    font-size: 14px;
+    margin: 5px auto;
+    padding: 0px !important;
+}
+
+.line{
+    border-bottom: 1px solid #ababab;
+    width: 170px;
+    margin: 0 auto;
+}
+
+ul.legals li {
+    display: inline-block;
+    padding: 0px 20px;
+    margin: 0px;
+}
+.user-info{
+    margin-top: 1.2%;
+    text-align: center;
+    margin-left: 3%;
+    font-size: 18px;
+    font-weight: bold;
+    position: absolute;
+}
+
+
+.tatsu-section-background-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.tatsu-section-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+
+    background-image: url('../images/index-bg.svg');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: bottom center;
+    background-size: cover;
+}
+
+
+.welcome-context{
+    position: absolute;
+    width: 20%;
+    text-align: left;
+    margin-top: 15%;
+    margin-left: 20%;
+}
+
+.welcome-context p{
+    margin-top: 7%;
+    font-size: 15px;
+}
+
+.pie-img{
+    float: left;
+    width: 100px;
+    height: 100px;
+}
+
+.computer-img{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    margin-top: 13%;
+    margin-left: 2%;
+}
+
+.people-img{
+    position: absolute;
+    margin-top: 15%;
+    margin-left: 35%;
+    width: 280px;
+    height: 280px;
+}

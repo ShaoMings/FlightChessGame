@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" charset="UTF-8">
+    <title>Public</title>
+    <link type="text/css" th:href="@{/static/layui/css/layui.css}"
+          rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/template.css}"
+          href="../static/css/template.css">
+</head>
+
+<body>
+
+<div class="navBar" th:fragment="topBar">
+    <ul class="layui-nav">
+        <img class="pie-img" src="../static/images/pie-chart-1.svg"/>
+        <div class="menu">
+            <li class="index-left">
+                <h1 class="logo">
+                    <img src="../static/images/program.svg" class="layui-nav-img">HelloWorld !
+                </h1>
+            </li>
+            <li class="layui-nav-item" id="index">
+                <a href="/"><i class="layui-icon layui-icon-home"></i>首页<span class="layui-badge-dot"></span></a>
+            </li>
+            <li class="layui-nav-item" id="project">
+                <a href="/code"><i class="layui-icon layui-icon-template-1"></i>我的项目<span
+                        class="layui-badge-dot"></span></a>
+            </li>
+
+            <li class="layui-nav-item" id="judge">
+                <a href="/oj"><i class="layui-icon layui-icon-edit"></i>在线做题<span class="layui-badge-dot"></span></a>
+            </li>
+
+            <li class="layui-nav-item" id="exercise">
+                <a href="/exercise"><i class="layui-icon layui-icon-app"></i>进入题库<span class="layui-badge-dot"></span></a>
+            </li>
+
+            <li class="layui-nav-item" id="about">
+                <a href=""><i class="layui-icon layui-icon-about"></i>关于我们</a>
+            </li>
+
+            <li class="layui-nav-item layui-inline index-right" th:if="${auth} eq true">
+                <a href="javascript:;"><img src="../static/images/mine.png" class="layui-nav-img">
+                    <th:block th:text="${username}"/>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd th:if="${isadmin} eq true"><a href="/admin">后台管理</a></dd>
+                    <dd><a href="javascript:;">修改信息</a></dd>
+                    <dd><a href="javascript:;">退出登录</a></dd>
+                </dl>
+            </li>
+
+            <li class="layui-nav-item" th:if="${auth} eq false">
+                <a href="/login"><i class="layui-icon layui-icon-username"></i>登录</a>
+            </li>
+        </div>
+    </ul>
+</div>
+
+<div class="footerBar" style="position: absolute;width: 100%;top: 78vh" th:fragment="footerBar">
+    <footer>
+        <div class="layui-container" id="foot">
+            <div class="layui-row">
+                <div class="layui-col-md12">
+                    <ul class="legals">
+                        <li><a href="" target="_blank">联系</a></li>
+                        <li><a href="" target="_blank">博客</a></li>
+                        <li><a href="" target="_blank">简介</a></li>
+                    </ul>
+                    <div class="line"></div>
+                    <ul class="legals social">
+                        <li><a href="" title="微博"><i class="layui-icon layui-icon-login-weibo"></i></a></li>
+                        <li><a href="" title="邮箱"><i class="layui-icon layui-icon-email"></i></a></li>
+                    </ul>
+                    <p class="copy">Copyright © 2020 · 在线学习系统 · All Rights Reserved</p></div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script charset="utf-8" type="text/javascript" th:src="@{/static/layui/layui.all.js}"
+        src="../static/layui/layui.all.js"></script>
+<script>
+    layui.use(['element'], function(){
+        var element = layui.element;
+        element.render();
+    })
+</script>
+</body>
+
+</html>
